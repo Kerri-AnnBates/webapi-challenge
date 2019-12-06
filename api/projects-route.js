@@ -47,13 +47,17 @@ router.delete('/:id', validateId, (req, res) => {
 router.post('/', (req, res) => {
     const newProject = req.body;
 
-    projects.insert(newProject)
-        .then(projectAdded => {
-            res.status(200).json(projectAdded);
-        })
-        .catch(error => {
-            res.status(500).json({ message: 'Unable to add project' });
-        })
+    if(newProject.name && newProject.description) {
+        projects.insert(newProject)
+            .then(projectAdded => {
+                res.status(201).json(projectAdded);
+            })
+            .catch(error => {
+                res.status(500).json({ message: 'Unable to add project' });
+            })
+    } else {
+        res.status(400).json({ message: 'Please provide project name, and description.' });
+    }
 });
 
 //PUT 
@@ -61,14 +65,18 @@ router.post('/', (req, res) => {
 router.put('/:id', validateId, (req, res) => {
     const updates = req.body;
     const id = req.params.id;
-
-    projects.update(id, updates)
-        .then(updatedProject => {
-            res.status(200).json(updatedProject);
-        })
-        .catch(error => {
-            res.status(500).json({ message: 'Unable to add project' });
-        })
+    
+    if (newProject.name && newProject.description) {
+        projects.update(id, updates)
+            .then(updatedProject => {
+                res.status(200).json(updatedProject);
+            })
+            .catch(error => {
+                res.status(500).json({ message: 'Unable to add project' });
+            })
+    } else {
+        res.status(400).json({ message: 'Please provide project name, and description.' });
+    }
 })
 
 // Custom middlewar
