@@ -16,6 +16,19 @@ router.get('/:id', validateId, (req, res) => {
         })
 });
 
+// GET actions by project id.
+router.get('/:id/actions', validateId, (req, res) => {
+    const id = req.params.id;
+
+    projects.getProjectActions(id)
+        .then(actions => {
+            res.status(200).json(actions);
+        })
+        .catch(error => {
+            res.status(500).json({ message: 'Unable to delete actions' });
+        });
+})
+
 // DELETE
 router.delete('/:id', validateId, (req, res) => {
     const id = req.params.id;
