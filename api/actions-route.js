@@ -55,6 +55,24 @@ router.post('/:id', (req, res) => {
     }
 });
 
+// PUT
+router.put('/:id', validateId, (req, res) => {
+    const id = req.params.id;
+    const actionUpdates = req.body;
+
+    if(actionUpdates.description && actionUpdates.notes) {
+        actions.update(id, actionUpdates)
+            .then(updated => {
+                res.status(200).json(updated)
+            })
+            .catch(error => {
+                res.status(500).json({ message: 'Unable to update action' });
+            })
+    } else {
+        res.status(400).json({ message: 'Please provide notes, and description.' });
+    }
+});
+
 // Custom middlewar
 function validateId(req, res, next) {
     const id = req.params.id;
