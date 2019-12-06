@@ -30,30 +30,29 @@ router.delete('/:id', validateId, (req, res) => {
 });
 
 // POST an action. When adding an action, make sure the project_id provided belongs to an existing project
-router.post('/', (req, res) => {
+// { "project_id": 5, "description": "Action description", "notes": "some notes" }
+router.post('/:id', (req, res) => {
     const newAction = req.body;
-    /* 
-        {
-            "project_id": 5,
-            "description": "Action description"
-        }
-    */
+    const id = req.params.id;
 
-    // get projects and see if the action's id matches one of the project's id.
-    projects.get(newAction.project_id)
-        .then(project => { 
-            if(!project) { 
-                res.status(404).json({ message: 'No such project Id exist. Unable to add action.' }); 
+    projects.get(id)
+        .then(project => {
+            if (!project) {
+                res.status(404).json({ message: 'No such project exists by that id.' });
             }
-        });
+        })
 
-    actions.insert(newAction)
-        .then(actionAdded => {
-            res.status(200).json(actionAdded);
-        })
-        .catch(error => {
-            res.status(500).json({ message: 'Unable to add action' });
-        })
+    if(newAction.notes && newAction.project_id && newAction.description) {
+        actions.insert(newAction)
+            .then(actionAdded => {
+                res.status(201).json(actionAdded);
+            })
+            .catch(error => {
+                res.status(500).json({ message: 'Unable to add action' });
+            })
+    } else {
+        res.status(400).json({ message: 'Please provide project id number, notes, and description.' });
+    }
 });
 
 // Custom middlewar
@@ -63,7 +62,7 @@ function validateId(req, res, next) {
     actions.get(id)
         .then(action => {
             if (!action) {
-                res.status(404).json({ message: 'No such action exists' });
+                res.status(404).json({ message: 'No such action exists by that id.' });
             } else {
                 next();
             }
