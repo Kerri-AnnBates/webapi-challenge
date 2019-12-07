@@ -44,7 +44,13 @@ button:hover {
   border-color: #3EB7B2;
 }
 
+.btn-save {
+  background-color: #3EB7B2;
+  border-color: #3EB7B2;
+}
+
 /* Form */
+
 input, textarea {
   width: 100%;
   border: 2px solid #cdcdcd;
@@ -56,5 +62,13 @@ input, textarea {
 
 label {
   margin: 10px 0;
+  display: block;
+}
+
+.edit-form {
+  display: none;
+}
+
+.edit-form.show-form {
   display: block;
 }
