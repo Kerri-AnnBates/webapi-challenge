@@ -16,20 +16,23 @@ function App() {
   useEffect(() => {
     axios.get(`http://localhost:4000/projects`)
       .then(res => {
-        // setProjects(res.data);
         console.log(res.data);
+        setProjects(res.data);
       })
       .catch(err => {
         console.log(err);
       })
   }, [])
 
+
   return (
     <div className="App">
-      <h1>Project Tracker</h1>
-      <ProjectsContext.Provider value={{projects}}>
-        <ProjectList />
-      </ProjectsContext.Provider>
+      <div className="container">
+        <h1>Project Tracker</h1>
+        <ProjectsContext.Provider value={projects}>
+          <ProjectList />
+        </ProjectsContext.Provider>
+      </div>
     </div>
   );
 }

@@ -1,38 +1,60 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+
+h1 {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  max-width: 1000px;
+  width: 100%;
+  margin: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.project-card {
+  border: 2px solid #cdcdcd;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+button:hover {
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.btn {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-edit {
+  background-color: #FFAA81;
+  border-color: #FFAA81;
+}
+
+.btn-delete {
+  border-color: #AA3939;
+}
+
+.btn-add {
+  background-color: #3EB7B2;
+  border-color: #3EB7B2;
+}
+
+/* Form */
+input, textarea {
+  width: 100%;
+  border: 2px solid #cdcdcd;
+  border-radius: 5px;
+  padding: 3px 10px;
+  margin-top: 5px;
+  display: block;
+}
+
+label {
+  margin: 10px 0;
+  display: block;
 }
