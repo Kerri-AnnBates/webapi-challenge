@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
+import {Route} from 'react-router-dom';
 
 //Contexts
 import { ProjectsContext } from './contexts/ProjectsContexts';
 
 // Components
 import ProjectList from './components/projects/ProjectList';
+import EditForm from './components/forms/EditForm';
 
 function App() {
 
@@ -30,7 +32,8 @@ function App() {
       <div className="container">
         <h1>Project Tracker</h1>
         <ProjectsContext.Provider value={projects}>
-          <ProjectList />
+          <Route exact path="/" component={ProjectList}/>
+          <Route path="/edit-project/:id" component={EditForm} />
         </ProjectsContext.Provider>
       </div>
     </div>

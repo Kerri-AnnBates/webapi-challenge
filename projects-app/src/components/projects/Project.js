@@ -1,5 +1,4 @@
 import React from 'react'
-import EditForm from '../forms/EditForm'
 
 function Project({ project, editHandler, changeHandler, inputs }) {
 
@@ -15,10 +14,6 @@ function Project({ project, editHandler, changeHandler, inputs }) {
                         onChange={changeHandler}
                     >Edit</button>
                     <button className="btn btn-delete">Delete</button>
-                    <EditForm 
-                        changeHandler={changeHandler} 
-                        inputs={inputs} 
-                    />
                 </div>
             </div>
         </>

@@ -64,11 +64,3 @@ label {
   margin: 10px 0;
   display: block;
 }
-
-.edit-form {
-  display: none;
-}
-
-.edit-form.show-form {
-  display: block;
-}
