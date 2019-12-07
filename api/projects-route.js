@@ -16,6 +16,17 @@ router.get('/:id', validateId, (req, res) => {
         })
 });
 
+router.get('/', (req, res) => {
+
+    projects.get()
+        .then(projectS => {
+            res.status(200).json(projectS);
+        })
+        .catch(error => {
+            res.status(500).json({ message: 'Unable to retrieve projects' });
+        })
+});
+
 // GET actions by project id.
 router.get('/:id/actions', validateId, (req, res) => {
     const id = req.params.id;
@@ -65,8 +76,8 @@ router.post('/', (req, res) => {
 router.put('/:id', validateId, (req, res) => {
     const updates = req.body;
     const id = req.params.id;
-    
-    if (newProject.name && newProject.description) {
+
+    if (updates.name && updates.description) {
         projects.update(id, updates)
             .then(updatedProject => {
                 res.status(200).json(updatedProject);
