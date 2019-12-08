@@ -31,14 +31,22 @@ function EditForm(props) {
         setInputs({ ...inputs, [e.target.name]: e.target.value });
     }
 
-    function handleSave() {
-
+    function handleSave(e) {
+        e.preventDefault();
+        axios.put(`http://localhost:4000/projects/${project.id}`, inputs)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        document.querySelector(`.project-${project.id} .edit-form`).classList.remove('show-form');
     }
 
     return (
         <div>
             {/* <h3>Edit Project</h3> */}
-            <form className="edit-form">
+            <form className="edit-form" onSubmit={handleSave}>
                 <label htmlFor="name">Name: <input
                     type="text"
                     id="name"

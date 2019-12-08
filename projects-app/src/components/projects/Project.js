@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import EditForm from '../forms/EditForm';
+import axios from 'axios';
 
 function Project(props) {
     const { project } = props;
-    
+
     function editHandler(project) {
         console.log('You edited me!');
         // props.history.push(`/edit-project/${project.id}`);
         document.querySelector(`.project-${project.id} .edit-form`).classList.toggle('show-form');
+    }
+
+    function deleteHandler(id) {
+        axios.delete(`http://localhost:4000/projects/${id}`)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(error => {
+                console.log(error.status);
+            })
     }
 
     return (
@@ -20,7 +31,7 @@ function Project(props) {
                         className="btn btn-edit"
                         onClick={() => editHandler(project)}
                     >Edit</button>
-                    <button className="btn btn-delete">Delete</button>
+                    <button className="btn btn-delete" onClick={() => { deleteHandler(project.id) }}>Delete</button>
                     <EditForm project={props.project} />
                 </div>
             </div>
