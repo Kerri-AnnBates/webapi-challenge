@@ -3,10 +3,9 @@ import { ProjectsContext } from '../../contexts/ProjectsContexts';
 import axios from 'axios';
 
 function EditForm(props) {
-    const projects = useContext(ProjectsContext);
-    const id = props.match.params.id;
+    // const id = props.match.params.id;
+    const {project} = props;
     
-    const [project, setProject] = useState({});
     const [inputs, setInputs] = useState({
         name: '',
         description: ''
@@ -14,10 +13,9 @@ function EditForm(props) {
 
     // GET project by id
     useEffect(() => {
-        axios.get(`http://localhost:4000/projects/${id}`)
+        axios.get(`http://localhost:4000/projects/${project.id}`)
             .then(project => {
                 console.log(project.data);
-                setProject(project.data);
                 setInputs({
                     ...inputs,
                     name: project.data.name,
@@ -33,9 +31,13 @@ function EditForm(props) {
         setInputs({ ...inputs, [e.target.name]: e.target.value });
     }
 
+    function handleSave() {
+
+    }
+
     return (
         <div>
-            <h3>Edit Project</h3>
+            {/* <h3>Edit Project</h3> */}
             <form className="edit-form">
                 <label htmlFor="name">Name: <input
                     type="text"

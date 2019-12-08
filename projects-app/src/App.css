@@ -58,9 +58,18 @@ input, textarea {
   padding: 3px 10px;
   margin-top: 5px;
   display: block;
+  font-size: 16px;
 }
 
 label {
   margin: 10px 0;
+  display: block;
+}
+
+.edit-form {
+  display: none;
+}
+
+.edit-form.show-form {
   display: block;
 }

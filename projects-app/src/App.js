@@ -33,7 +33,7 @@ function App() {
         <h1>Project Tracker</h1>
         <ProjectsContext.Provider value={projects}>
           <Route exact path="/" component={ProjectList}/>
-          <Route path="/edit-project/:id" component={EditForm} />
+          {/* <Route path="/edit-project/:id" component={EditForm} /> */}
         </ProjectsContext.Provider>
       </div>
     </div>

@@ -7,10 +7,10 @@ function ProjectList(props) {
     // Projects from api
     const projects = useContext(ProjectsContext);
 
-    function editHandler(project) {
-        console.log('You edited me!');
-        props.history.push(`/edit-project/${project.id}`);
-    }
+    // function editHandler(project) {
+    //     console.log('You edited me!');
+    //     props.history.push(`/edit-project/${project.id}`);
+    // }
 
     return (
         <div className="project-wrapper">
