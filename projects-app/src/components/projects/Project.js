@@ -1,17 +1,17 @@
 import React from 'react'
 
-function Project({ project, editHandler, changeHandler, inputs }) {
-
+function Project(props) {
+    const { project, editHandler } = props;
+    // console.log(props)
     return (
         <>
             <div className="project-card">
-                <div className={`project-${project.id}`}>
-                    <h3>{project.name}</h3>
-                    <p>{project.description}</p>
-                    <button 
-                        className="btn btn-edit" 
+                <div className={`project-${props.project.id}`}>
+                    <h3>{props.project.name}</h3>
+                    <p>{props.project.description}</p>
+                    <button
+                        className="btn btn-edit"
                         onClick={() => editHandler(project)}
-                        onChange={changeHandler}
                     >Edit</button>
                     <button className="btn btn-delete">Delete</button>
                 </div>

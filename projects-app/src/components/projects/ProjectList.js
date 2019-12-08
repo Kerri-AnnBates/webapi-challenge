@@ -2,22 +2,14 @@ import React, { useContext, useState } from 'react'
 import { ProjectsContext } from '../../contexts/ProjectsContexts';
 import Project from './Project';
 
-function ProjectList() {
+function ProjectList(props) {
 
     // Projects from api
     const projects = useContext(ProjectsContext);
-    const [inputs, setInputs] = useState({
-        name: '',
-        description: ''
-    });
-
-    function changeHandler(e) {
-        setInputs({ ...inputs, [e.target.name]: e.target.value });
-    }
 
     function editHandler(project) {
         console.log('You edited me!');
-        document.querySelector(`.project-${project.id} .edit-form`).classList.toggle('show-form');
+        props.history.push(`/edit-project/${project.id}`);
     }
 
     return (
@@ -30,9 +22,6 @@ function ProjectList() {
                 <Project
                     key={project.id}
                     project={project}
-                    editHandler={editHandler}
-                    changeHandler={changeHandler}
-                    inputs={inputs}
                 />
             ))}
         </div>
